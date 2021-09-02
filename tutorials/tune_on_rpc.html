@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="python3" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Tuning on RPC Workers &mdash; lorien alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Feature Extraction for Model Training" href="extract_feature.html" />
+    <link rel="prev" title="Tuning on AWS Batch" href="tune_on_aws_batch.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> lorien
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Setup Lorien</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#tuning">Tuning</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tune_on_local.html">Tuning on Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tune_on_aws_batch.html">Tuning on AWS Batch</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tuning on RPC Workers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configure-a-tuning-master">Configure A Tuning Master</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-a-tuning-worker-on-an-instance">Configure A Tuning Worker on An Instance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-a-tuning-worker-on-a-machine-connecting-to-mobile-phones">Configure A Tuning Worker on A Machine Connecting to Mobile Phones</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resume-tuning">Resume Tuning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#performance-cost-model">Performance Cost Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#new-dialects">New Dialects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute/index.html">Contribute to Lorien</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Python APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">lorien</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+        
+      <li>Tuning on RPC Workers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/tune_on_rpc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tuning-on-rpc-workers">
+<span id="tune-on-rpc"></span><h1>Tuning on RPC Workers<a class="headerlink" href="#tuning-on-rpc-workers" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, we introduce how to setup Lorien RPC (remote procedure call) servers and use them for tuning. If your target platform is not available on AWS batch (e.g., mobile and edge devices) or you do not want to configure an AWS batch, this is the right place for you.</p>
+<p>Lorien RPC tuner is composed of the following components:</p>
+<ul class="simple">
+<li><p><strong>Tuning Master (RPC server)</strong>: Tuning master could be on any machine that allows public connections. For example, you can launch an EC2 instance with a range of ports opened. Tuning master is in charge of the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Load workloads.</p></li>
+<li><p>Create jobs.</p></li>
+<li><p>Launch an RPC server.</p></li>
+<li><p>Accept connections from RPC clients.</p></li>
+<li><p>Submit jobs to the RPC server.</p></li>
+<li><p>Track the tuning progress.</p></li>
+<li><p>Collect results from the RPC server.</p></li>
+</ol>
+</li>
+<li><p><strong>Workers (RPC client)</strong>: Workers are the machines that actually running the tuning jobs. A brief workflow is shown as follows:</p>
+<ol class="arabic simple">
+<li><p>Launch RPC client.</p></li>
+<li><p>Connect to the tuning master (RPC server).</p></li>
+<li><p>Register itself as a worker.</p></li>
+<li><p>Request for a tuning job.</p></li>
+<li><p>Perform tuning.</p></li>
+<li><p>Submit results to the database (optional).</p></li>
+<li><p>Send results back to the tuning master.</p></li>
+</ol>
+</li>
+</ul>
+<p>For example, if you are tuning on an EC2 instance, then that instance itself would be a worker. If you are tuning on mobile phones, then the host machine connecting to the mobile phones would be a worker. We will explain how to set up workers in each case in the following sections.</p>
+<p>The rest of this tutorial is composed of 3 sections. The first section demonstrates how to configure and launch a tuning master. The second section illustrates how to launch a worker and register it to the master for tuning jobs on an EC2 instance. The third section shows how to launch and register a worker for tuning jobs on a device host with mobile phones.</p>
+<div class="section" id="configure-a-tuning-master">
+<h2>Configure A Tuning Master<a class="headerlink" href="#configure-a-tuning-master" title="Permalink to this headline">¶</a></h2>
+<p>Configure a tuning master is relatively straightforward. Here is an example of configure file for a tuning master:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># tune_rpc.yaml</span>
+<span class="nt">rpc</span><span class="p">:</span>
+  <span class="nt">target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lvm -device=arm_cpu -mtriple=aarch64-linux-gnu</span>
+  <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">18871</span>
+<span class="nt">tuner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">random</span>
+<span class="nt">ntrial</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="nt">commit-table-name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lorien-data</span>
+<span class="nt">commit-nbest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="nt">commit-log-to</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tuned-logs</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">llvm</span> <span class="pre">-device=arm_cpu</span> <span class="pre">-mtriple=aarch64-linux-gnu</span></code> indicates the platform we want to tune, and <code class="docutils literal notranslate"><span class="pre">port</span></code> will be used to launch an RPC server for workers to connect. It implies that we can also launch multiple tuning masters at the same time by assigning different ports to different targets.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="tune_on_aws_batch.html#tune-on-aws-batch"><span class="std std-ref">Tuning on AWS Batch</span></a> for more detail explanations to other tuning paramters.</p>
+</div>
+<p>Then we can use Lorien CLI to launch a tuning master:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m lorien tune @tune_rpc.yaml @workloads.yaml
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">workloads.yaml</span></code> is a file with workloads we want to tune. Note that if you have no idea about how to prepare the workloads for tuning, you can refer to <a class="reference internal" href="tune_on_local.html#tune-on-local"><span class="std std-ref">Tuning on Local</span></a></p>
+<p>After the tuning master is launched, we should see the following messages on console. Since we have not registered any workers, it shows 0 workers for now.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>INFO Master: Loaded <span class="m">100</span> workloads
+INFO Master: Tuning logs on llvm will be uploaded to s3://tuned-logs/topi-llvm
+INFO RPCServer: Launching RPC server at port <span class="m">18871</span>
+INFO RPCServer: Server has been initialized
+llvm -keys<span class="o">=</span>arm_cpud,cpu -device<span class="o">=</span>arm_cpu -mtriple<span class="o">=</span>aarch64-linux-gnu on <span class="m">0</span> RPC workers:   <span class="m">0</span>%<span class="p">|</span>                                    <span class="p">|</span> <span class="m">0</span>/100 <span class="o">[</span><span class="m">00</span>:02&lt;?, ?it/s<span class="o">]</span>
+</pre></div>
+</div>
+<p>At this moment, the tuning master is ready to distribute tuning jobs to workers. In the next section, we are going to launch a worker on a different machine for tuning.</p>
+</div>
+<div class="section" id="configure-a-tuning-worker-on-an-instance">
+<h2>Configure A Tuning Worker on An Instance<a class="headerlink" href="#configure-a-tuning-worker-on-an-instance" title="Permalink to this headline">¶</a></h2>
+<p>Although most famous EC2 instances are supported by AWS batch so we should be able to use AWS batch tuner to ease our efforts, some new types of instance such as Graviton 2 are not yet supported. In this case, we need to manually launch those instances and register them as tuning workers.</p>
+<p>Suppose we have launched a Graviton 2 instance and deployed both TVM and Lorien, what we need to do is running the following command (assuming the tuning master's IP is <code class="docutils literal notranslate"><span class="pre">1.2.3.4</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m lorien rpc-client --server <span class="m">1</span>.2.3.4:18871 --target <span class="s2">&quot;llvm -device=arm_cpu -mtriple=aarch64-linux-gnu&quot;</span>
+</pre></div>
+</div>
+<p>Then we should see the following responses:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>INFO RPCClient: Connecting to server <span class="m">1</span>.2.3.4:18871
+INFO RPCClient: localhost:18871 connected
+INFO RPCClient: Register token ccf7ee15-b891-4dfc-aaa4-f449635063aa
+INFO RPCClient: LocalRunner
+INFO RPCClient: Requesting a job <span class="k">for</span> tuning
+INFO RPCClient: Start tuning
+INFO Tuner: Tuning workload ...skip...
+</pre></div>
+</div>
+<p>where the register token is the token generated by the RPC server to avoid unauthorized operations. Most communications with the RPC server such as job requesting and result transferring require the token. The token will expire right after the worker is disconnected, which means a worker will need a new token when it reconnects to the server in case it was disconnected accidently. In addition, the message <code class="docutils literal notranslate"><span class="pre">LocalRunner</span></code> indicates that this worker will tune jobs locally, meaning that the target platform (ARM CPU with target string <code class="docutils literal notranslate"><span class="pre">llvm</span> <span class="pre">-device=arm_cpu</span> <span class="pre">-mtriple=aarch64-linux-gnu</span></code> in this example) is accessible directly.</p>
+<p>Meanwhile, we can also find some changes in the master (RPC server) side:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>llvm -mcpu<span class="o">=</span>skylake-avx512 on <span class="m">1</span> RPC workers:
+<span class="m">0</span>%<span class="p">|</span>                                    <span class="p">|</span> <span class="m">0</span>/100 <span class="o">[</span><span class="m">00</span>:31&lt;?, ?it/s<span class="o">]</span>
+</pre></div>
+</div>
+<p>As a result, we can track the number of activing workers in real time.</p>
+</div>
+<div class="section" id="configure-a-tuning-worker-on-a-machine-connecting-to-mobile-phones">
+<h2>Configure A Tuning Worker on A Machine Connecting to Mobile Phones<a class="headerlink" href="#configure-a-tuning-worker-on-a-machine-connecting-to-mobile-phones" title="Permalink to this headline">¶</a></h2>
+<p>When the target platform is not accessible directly on a host machine (e.g., an ARM CPU with target string <code class="docutils literal notranslate"><span class="pre">llvm</span> <span class="pre">-mtriple=aarch64-linux-gnu</span></code> used by a mobile phone), the configuration becomes a bit complicate. We need to follow <a class="reference external" href="https://docs.tvm.ai/tutorials/autotvm/tune_relay_mobile_gpu">an AutoTVM tutorial</a> to set up another connection between the device and the host machine. Specifically, our goal is to set up the following connections:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Master: Lorien RPC server
+               <span class="p">|</span>
+Worker: Lorien RPC client, TVM RPC tracker
+                                <span class="p">|</span>
+Device:                    TVM RPC server
+</pre></div>
+</div>
+<p>As can be seen, the worker (host machine) launches both Lorien RPC client and TVM RPC tracker. When Lorien RPC client successfully requests a tuning job, AutoTVM will be used to tune it. During the tuning, AutoTVM builds an executable binary for the device on the host machine, and sends the binary to the device via TVM RPC tracker for performance measurement. Here are the detail steps for configuring each of them.</p>
+<div class="section" id="worker-start-a-tvm-rpc-tracker">
+<h3>1. [Worker] Start A TVM RPC Tracker<a class="headerlink" href="#worker-start-a-tvm-rpc-tracker" title="Permalink to this headline">¶</a></h3>
+<p>Use the following command on the host machine to launch a TVM RPC tracker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m tvm.exec.rpc_tracker --host<span class="o">=</span><span class="m">0</span>.0.0.0 --port<span class="o">=</span><span class="m">9190</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="device-register-a-device">
+<h3>2. [Device] Register A Device<a class="headerlink" href="#device-register-a-device" title="Permalink to this headline">¶</a></h3>
+<p>Use the following command on the device to launch a TVM RPC server and register it to the host:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m tvm.exec.rpc_server --tracker<span class="o">=[</span>HOST_IP<span class="o">]</span>:9190 --key<span class="o">=</span>my-device-key
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please refer to <a class="reference external" href="https://docs.tvm.ai/tutorials/autotvm/tune_relay_mobile_gpu.html#register-devices-to-rpc-tracker">the description</a> in AutoTVM tutorial for deploying a TVM runtime on devices for tuning.</p>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">key</span></code> is a label defined by yourself to pair the target. We will use it when configuring the Lorien RPC client in the next step.</p>
+</div>
+<div class="section" id="worker-start-a-lorien-rpc-client">
+<h3>3. [Worker] Start A Lorien RPC Client<a class="headerlink" href="#worker-start-a-lorien-rpc-client" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we start a Lorien RPC client by the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m lorien rpc-client --server <span class="m">1</span>.2.3.4:18871 --target <span class="s2">&quot;lvm -device=arm_cpu -mtriple=aarch64-linux-gnu&quot;</span> --device my-device-key --runner-port <span class="m">9190</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">device</span></code> is the device name for pairing; <code class="docutils literal notranslate"><span class="pre">runner-port</span></code> is the TVM RPC tracker port we launched in the previous step. As can be seen, this command launches a Lorien RPC client that registers itself to a Lorien tuning master and as well as connects to the TVM RPC tracker.</p>
+<p>Again, we would see the following messages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>INFO RPCClient: Connecting to server <span class="m">1</span>.2.3.4:18871
+INFO RPCClient: localhost:18871 connected
+INFO RPCClient: Register token ccf7ee15-b891-4dfc-aaa4-f449635063aa
+INFO RPCClient: RPCRunner: <span class="m">0</span>.0.0.0:9190 - my-device-key
+INFO RPCClient: Requesting a job <span class="k">for</span> tuning
+INFO RPCClient: Start tuning
+INFO Tuner: Tuning workload ...skip...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="resume-tuning">
+<h2>Resume Tuning<a class="headerlink" href="#resume-tuning" title="Permalink to this headline">¶</a></h2>
+<p>In case the tuning master was interrupted accidentally, you can relaunch the master with the job trace file to resume the tuning, where the trace file was generated by the job manager automatically. Please note that clients are required to connect to the master again.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m lorien tune @tune_rpc.yaml @workloads.yaml --trace-file<span class="o">=</span>&lt;trace_file_path&gt;
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="extract_feature.html" class="btn btn-neutral float-right" title="Feature Extraction for Model Training" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tune_on_aws_batch.html" class="btn btn-neutral float-left" title="Tuning on AWS Batch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright .
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

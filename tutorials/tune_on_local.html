@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="python3" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Tuning on Local &mdash; lorien alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tuning on AWS Batch" href="tune_on_aws_batch.html" />
+    <link rel="prev" title="Tutorials" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> lorien
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Setup Lorien</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#tuning">Tuning</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tuning on Local</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#steps">Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tune_on_aws_batch.html">Tuning on AWS Batch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tune_on_rpc.html">Tuning on RPC Workers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#performance-cost-model">Performance Cost Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#new-dialects">New Dialects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute/index.html">Contribute to Lorien</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Python APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">lorien</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+        
+      <li>Tuning on Local</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/tune_on_local.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tuning-on-local">
+<span id="tune-on-local"></span><h1>Tuning on Local<a class="headerlink" href="#tuning-on-local" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, we introduce how to use Lorien to tune tasks locally step-by-step. This could be a quick way to let you hand on with Lorien to see what it can do. Specifically, we demonstrate how to extract tuning tasks from ResNet-18 in GluonCV model zoo and tune them using AutoTVM on the local machine.</p>
+<div class="section" id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setup-lorien">
+<h3>1. Setup Lorien<a class="headerlink" href="#setup-lorien" title="Permalink to this headline">¶</a></h3>
+<p>Please first refer to <a class="reference internal" href="../setup/index.html#setup"><span class="std std-ref">Setup Lorien</span></a> to setup Lorien.</p>
+</div>
+<div class="section" id="extract-tuning-tasks">
+<h3>2. Extract tuning tasks<a class="headerlink" href="#extract-tuning-tasks" title="Permalink to this headline">¶</a></h3>
+<p>Lorien can be configured via commandline or a configure file in YAML format. Here is an example configure file of extracting workloads from ResNet-18 in GluonCV model zoo (note that MXNet and GluonCV must be available in your environment):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">gcv</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">resnet18_v1</span>
+<span class="nt">output</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">workloads.yaml</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">gcv</span></code> indicates that the model file is coming from GluonCV model zoo. You can find some samples in configs/samples. In addition, Lorien also supports model files in other framework formats. You can run the following command to check the supported formats:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m lorien generate autotvm extract-from-model -h
+</pre></div>
+</div>
+<p>Then we simply run the command with the configure file to extract workloads:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m lorien generate autotvm extract-from-model @configs/gcv_resnet18.yaml --target llvm
+</pre></div>
+</div>
+<p>The above command outputs a file <code class="docutils literal notranslate"><span class="pre">workloads.yaml</span></code>. Each line in this file indicates a tunable workload. In the case of AutoTVM, it looks like the following</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="s">&#39;!!python/object:lorien.dialect.tvm_dial.autotvm_dial.workload.AutoTVMWorkload</span><span class="nv"> </span><span class="s">{_primary_key:</span><span class="nv"> </span><span class="s">null,</span><span class="nv"> </span><span class="s">args:</span><span class="nv"> </span><span class="s">[[TENSOR,</span><span class="nv"> </span><span class="s">[1,</span><span class="nv"> </span><span class="s">256,</span><span class="nv"> </span><span class="s">14,</span><span class="nv"> </span><span class="s">14],</span><span class="nv"> </span><span class="s">float32],</span><span class="nv"> </span><span class="s">[TENSOR,</span><span class="nv"> </span><span class="s">[512,</span><span class="nv"> </span><span class="s">256,</span><span class="nv"> </span><span class="s">1,</span><span class="nv"> </span><span class="s">1],</span><span class="nv"> </span><span class="s">float32],</span><span class="nv"> </span><span class="s">[2,</span><span class="nv"> </span><span class="s">2],</span><span class="nv"> </span><span class="s">[0,</span><span class="nv"> </span><span class="s">0,</span><span class="nv"> </span><span class="s">0,</span><span class="nv"> </span><span class="s">0],</span><span class="nv"> </span><span class="s">[1,</span><span class="nv"> </span><span class="s">1],</span><span class="nv"> </span><span class="s">NCHW,</span><span class="nv"> </span><span class="s">NCHW,</span><span class="nv"> </span><span class="s">float32],</span><span class="nv"> </span><span class="s">target:</span><span class="nv"> </span><span class="s">llvm</span><span class="nv"> </span><span class="s">-keys=cpu</span><span class="nv"> </span><span class="s">-link-params=0,</span><span class="nv"> </span><span class="s">task_name:</span><span class="nv"> </span><span class="s">conv2d_NCHWc.x86}&#39;</span>
+</pre></div>
+</div>
+<p>This is a serialized YAML object of an AutoTVM workload. If you are using a different dialect, you may see a completely different format in the workload file.</p>
+</div>
+<div class="section" id="tune-the-workloads">
+<h3>3. Tune the Workloads<a class="headerlink" href="#tune-the-workloads" title="Permalink to this headline">¶</a></h3>
+<p>To tune the workloads we just extracted, we again need to have a configure file as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tuning options.</span>
+<span class="nt">local</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">llvm</span>
+<span class="nt">db</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">endpoint_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://localhost:10020</span>
+<span class="nt">tuner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">random</span>
+<span class="nt">ntrial</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
+
+<span class="c1"># We enable clflush for x86 targets so we can have fewer tests.</span>
+<span class="nt">test</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">repeat</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="nt">min</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="c1"># Result committing options.</span>
+<span class="nt">commit-nbest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">commit-table-name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lorien</span>
+<span class="c1"># Uncomment this line if you have configured AWS CLI and S3 bucket.</span>
+<span class="c1">#commit-log-to: saved-tuning-logs</span>
+
+<span class="l l-Scalar l-Scalar-Plain">where ``ntrial`` indicates how many tuning trials for each workload; ``test``, ``repeat``, ``min`` are the configurations for schedule candidate evaluation. In the above configures, we run each schedule candidate once to get its execution latency, and repeat this process 10 times to eliminate the variants. Note that ``min`` means &quot;minimum repeat time in ms&quot;. It means the total run time of 10 runs is less than 1 ms, then we keep repeating until the total run time is 1 ms. This is also used to eliminate the variants.</span>
+
+<span class="l l-Scalar l-Scalar-Plain">In addition, in result committing options, ``commit-nbest`` means we will commit the best 1 schedule of each task to the table ``lorien`` in DynamoDB. Also, if you have configured AWS credential so that Lorien can access your S3 buckets via AWS CLI, you can let Lorien upload the complete tuning logs (with 15 explored schedules in this example) to the S3 bucket. These logs can be used to train a performance cost model later.</span>
+
+<span class="l l-Scalar l-Scalar-Plain">Finally, ``db`` configres the DynamoDB. Again, if you have configured AWS credential so that Lorien can access DynamoDB via AWS CLI, you can get rid of the ``db`` endpoint configuration. In this tutorial, we will launch a local DynamoDB for demonstraction purpose (Jave Runtime Environment is required). Specifically, you could open another terminal and run the following command</span><span class="p p-Indicator">:</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make launch_local_db
+</pre></div>
+</div>
+<p>This command launches a local DynamoDB at the port 10020. It is now ready to receive queries via endpoint <a class="reference external" href="http://localhost:10020">http://localhost:10020</a>.</p>
+<p>Now we can start tuning:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m lorien tune @tune_local.yaml @gcv_workloads.yaml
+</pre></div>
+</div>
+<p>Since we tune workloads locally, we will directly find the complete tuning logs in the current directly. You will see a directory with <code class="docutils literal notranslate"><span class="pre">lorien-tune-log-</span></code> prefix. Each file in the directory is the tuning log of a task.</p>
+</div>
+<div class="section" id="check-results">
+<h3>4. Check Results<a class="headerlink" href="#check-results" title="Permalink to this headline">¶</a></h3>
+<p>Now we use Lorien APIs to check if the best schedules has been correctly committed to the local DynamoDB:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lorien</span> <span class="kn">import</span> <span class="n">database</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">database</span><span class="o">.</span><span class="n">list_tables</span><span class="p">(</span><span class="n">endpoint_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:10020&quot;</span><span class="p">)</span>
+<span class="go">[&#39;lorien&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">scan_table</span><span class="p">(</span><span class="s2">&quot;lorien&quot;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:10020&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;Items&quot;</span><span class="p">])</span>
+<span class="go"># The number of tuned tasks.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;Items&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;TargetIDKeys&quot;</span><span class="p">]</span>
+<span class="go">{&#39;S&#39;: &#39;llvm_cpu&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;Items&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;PrimaryRangeKey&quot;</span><span class="p">]</span>
+<span class="go">{&#39;S&#39;: &#39;conv2d_NCHWc.x86#_TENSOR__1_256_14_14__float32_#_TENSOR__256_256_3_3__float32_#_1_1_#_1_1_1_1_#_1_1_#NCHW#NCHW#float32&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;Items&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;BestConfigs&quot;</span><span class="p">])</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<p>Success! It means the tuned schedules have been maintained in the DynamoDB. As a result, we can use the query API to query them when building the model. For simplify, we directly use the workload key we got above to query the schedule. In practice, you should extract workload from the model you are building, and use the workload key to query the best schedule.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">lorien.dialect.tvm_dial.autotvm_dial.result</span> <span class="kn">import</span> <span class="n">AutoTVMRecords</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">records</span> <span class="o">=</span> <span class="n">AutoTVMRecords</span><span class="p">(</span><span class="s2">&quot;llvm&quot;</span><span class="p">,</span> <span class="s2">&quot;conv2d_NCHWc.x86#_TENSOR__1_256_14_14__float32_#_TENSOR__256_256_3_3__float32_#_1_1_#_1_1_1_1_#_1_1_#NCHW#NCHW#float32&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">records</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;lorien&quot;</span><span class="p">,</span> <span class="n">endpoint_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:10020&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">records</span><span class="o">.</span><span class="n">peak</span><span class="p">()</span>
+<span class="go">(MeasureInput(target=llvm -keys=cpu -link-params=0, task=Task(func_name=conv2d_NCHWc.x86, args=((&#39;TENSOR&#39;, (1, 256, 14, 14), &#39;float32&#39;), (&#39;TENSOR&#39;, (256, 256, 3, 3), &#39;float32&#39;), (1, 1), (1, 1, 1, 1), (1, 1), &#39;NCHW&#39;, &#39;NCHW&#39;, &#39;float32&#39;), kwargs={}, workload=(&#39;conv2d_NCHWc.x86&#39;, (&#39;TENSOR&#39;, (1, 256, 14, 14), &#39;float32&#39;), (&#39;TENSOR&#39;, (256, 256, 3, 3), &#39;float32&#39;), (1, 1), (1, 1, 1, 1), (1, 1), &#39;NCHW&#39;, &#39;NCHW&#39;, &#39;float32&#39;)), config=[(&#39;tile_ic&#39;, [-1, 256]), (&#39;tile_oc&#39;, [-1, 1]), (&#39;tile_ow&#39;, [-1, 4]), (&#39;unroll_kw&#39;, True)],None,170), MeasureResult(costs=(0.005246509, 0.005248521, 0.0052774960000000004, 0.005288638, 0.0053149600000000005, 0.005316861, 0.005321088999999999, 0.00532152), error_no=0, all_cost=1.108623743057251, timestamp=1624993541.8088477))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fault-tolerance">
+<h3>5. Fault Tolerance<a class="headerlink" href="#fault-tolerance" title="Permalink to this headline">¶</a></h3>
+<p>All state changes of tuing jobs will be recorded in a <code class="docutils literal notranslate"><span class="pre">lorien-tune-&lt;timestampe&gt;.trace</span></code> file. In case the master was interrupted and you wish to resume the tuning, you could specify <code class="docutils literal notranslate"><span class="pre">--trace-file</span></code> in the command, so that the tuning master will skip the finished jobs and keep tracking the state of tuning jobs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m lorien tune @tune_local.yaml @gcv_workloads.yaml --trace-file<span class="o">=</span>&lt;trace_file_path&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="tune_on_aws_batch.html" class="btn btn-neutral float-right" title="Tuning on AWS Batch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright .
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

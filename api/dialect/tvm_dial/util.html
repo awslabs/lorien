@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="python3" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Util &mdash; lorien alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="AutoScheduler Dialect" href="auto_scheduler_dial/index.html" />
+    <link rel="prev" title="Result" href="result.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> lorien
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup/index.html">Setup Lorien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contribute/index.html">Contribute to Lorien</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../main.html">Main</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configs.html">Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workload.html">Workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../util.html">Util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../logger.html">Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../generate.html">Generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tune/index.html">Tune</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/index.html">Database</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Dialect</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">TVM Dialect</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="frontend_parser.html">Frontend Parser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="job.html">Job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="result.html">Result</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Util</a></li>
+<li class="toctree-l4"><a class="reference internal" href="auto_scheduler_dial/index.html">AutoScheduler Dialect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autotvm_dial/index.html">AutoTVM Dialect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">lorien</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Python APIs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Dialect</a> &raquo;</li>
+        
+          <li><a href="index.html">TVM Dialect</a> &raquo;</li>
+        
+      <li>Util</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/api/dialect/tvm_dial/util.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-lorien.dialect.tvm_dial.util">
+<span id="util"></span><h1>Util<a class="headerlink" href="#module-lorien.dialect.tvm_dial.util" title="Permalink to this headline">¶</a></h1>
+<p>Utility functions for TVM dialects</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="lorien.dialect.tvm_dial.util.check_tvm_version">
+<span class="sig-prename descclassname"><span class="pre">lorien.dialect.tvm_dial.util.</span></span><span class="sig-name descname"><span class="pre">check_tvm_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_req</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#lorien.dialect.tvm_dial.util.check_tvm_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the current TVM version satisfies the minimum requirement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>curr</strong> (<em>str</em>) -- The current version.</p></li>
+<li><p><strong>min_req</strong> (<em>str</em>) -- The minimum requirement version.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>check</strong> -- Return true if the current version satisfies the minimum requirement.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lorien.dialect.tvm_dial.util.gen_target_id_keys">
+<span class="sig-prename descclassname"><span class="pre">lorien.dialect.tvm_dial.util.</span></span><span class="sig-name descname"><span class="pre">gen_target_id_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#lorien.dialect.tvm_dial.util.gen_target_id_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a string that includes TVM target ID and keys.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) -- TVM target string.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>target_id_keys</strong> -- A string including target ID and keys.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lorien.dialect.tvm_dial.util.get_canonical_tvm_target_str">
+<span class="sig-prename descclassname"><span class="pre">lorien.dialect.tvm_dial.util.</span></span><span class="sig-name descname"><span class="pre">get_canonical_tvm_target_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">tvm.target.target.Target</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">tvm.autotvm.task.task.Task</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_libs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#lorien.dialect.tvm_dial.util.get_canonical_tvm_target_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a canonical TVM target string. Note that we do not use the builtin
+string function in TVM target object because we need to sort all attributes
+and their values to guarantee the target strings from the functional equivalent
+targets are identical.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Target</em><em>]</em>) -- TVM target or target string.</p></li>
+<li><p><strong>task</strong> (<em>Optional</em><em>[</em><em>Task</em><em>]</em>) -- The task of the given target. The canonical target depends on the required libraries
+of the task. If None, then no additional process will be applied to the target.</p></li>
+<li><p><strong>remove_libs</strong> (<em>bool</em>) -- Whether to remove the -libs in the target string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ret</strong> -- Canonical TVM target string.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lorien.dialect.tvm_dial.util.get_tvm_build_config">
+<span class="sig-prename descclassname"><span class="pre">lorien.dialect.tvm_dial.util.</span></span><span class="sig-name descname"><span class="pre">get_tvm_build_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lorien.dialect.tvm_dial.util.get_tvm_build_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the TVM build config such as commit, LLVM and CUDA version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>tvm_config</strong> -- A dict of build config.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lorien.dialect.tvm_dial.util.get_tvm_container_value_str">
+<span class="sig-prename descclassname"><span class="pre">lorien.dialect.tvm_dial.util.</span></span><span class="sig-name descname"><span class="pre">get_tvm_container_value_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.dialect.tvm_dial.util.get_tvm_container_value_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the primitive value in string from a TVM container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> (<em>Any</em>) -- The TVM container.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ret</strong> -- The container value in string.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lorien.dialect.tvm_dial.util.is_cover">
+<span class="sig-prename descclassname"><span class="pre">lorien.dialect.tvm_dial.util.</span></span><span class="sig-name descname"><span class="pre">is_cover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target1</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target2</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#lorien.dialect.tvm_dial.util.is_cover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if target 1 covers target 2. We define target 1 covers target 2
+if all specified attributes in target 1 are same as target 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target1</strong> (<em>str</em>) -- The TVM taret string.</p></li>
+<li><p><strong>target2</strong> (<em>str</em>) -- The TVM taret string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cover</strong> -- True if target 1 covers target 2.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lorien.dialect.tvm_dial.util.prune_table">
+<span class="sig-prename descclassname"><span class="pre">lorien.dialect.tvm_dial.util.</span></span><span class="sig-name descname"><span class="pre">prune_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbest</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">db_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lorien.dialect.tvm_dial.util.prune_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prune the best configs in a given table. Specifically, it scans a table, prune
+each item in the table and puts items back. See <code class="docutils literal notranslate"><span class="pre">prune_items()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> (<em>str</em>) -- The target table name to be pruned.</p></li>
+<li><p><strong>nbest</strong> (<em>int</em>) -- Keep the number of the most recent unique configs. Default 3.</p></li>
+<li><p><strong>**db_kwargs</strong> -- The kwargs of boto3 client. For example, use &quot;endpoint_url=http://localhost:8000&quot;
+for local DynamoDB.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lorien.dialect.tvm_dial.util.prune_table_item">
+<span class="sig-prename descclassname"><span class="pre">lorien.dialect.tvm_dial.util.</span></span><span class="sig-name descname"><span class="pre">prune_table_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbest</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lorien.dialect.tvm_dial.util.prune_table_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prune the best configs in a DynamoDB item by the following steps:
+1. Group by TVM build config and keep the best one for each group.
+2. Group by config and keep the most recent one for each group.
+3. Prune the rest configs based on user-strategy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) -- The item to be pruned.</p></li>
+<li><p><strong>nbest</strong> (<em>int</em>) -- Keep the number of the most recent unique configs. Default 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ret</strong> -- A pruned item.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="auto_scheduler_dial/index.html" class="btn btn-neutral float-right" title="AutoScheduler Dialect" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="result.html" class="btn btn-neutral float-left" title="Result" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright .
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

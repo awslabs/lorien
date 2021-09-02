@@ -1,5 +1,0 @@
-server: 'localhost:18871'
-target: 'llvm -mcpu=core-avx2'
-device: 'my-device'
-runner-port: '9190'
-

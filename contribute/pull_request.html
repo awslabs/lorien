@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="python3" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Submit a Pull Request &mdash; lorien alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python APIs" href="../api/index.html" />
+    <link rel="prev" title="Contribute to Lorien" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> lorien
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Setup Lorien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contribute to Lorien</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Submit a Pull Request</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ci-environment">CI Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-coverage-enforcement">Code Coverage Enforcement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Python APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">lorien</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Contribute to Lorien</a> &raquo;</li>
+        
+      <li>Submit a Pull Request</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/contribute/pull_request.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="submit-a-pull-request">
+<h1>Submit a Pull Request<a class="headerlink" href="#submit-a-pull-request" title="Permalink to this headline">¶</a></h1>
+<p>Assuming you have forked Lorien and made some nice features. Here is a guide to submit your changes as a pull request (PR).</p>
+<ul>
+<li><p>Add test-cases to cover the new features or bugfix the patch introduces.</p></li>
+<li><p>Document the code you wrote.</p></li>
+<li><p>Run unit tests locally and make sure your changes can pass all of them:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make unit_test
+</pre></div>
+</div>
+<p>If you only need to re-run a single test file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pytest tests/&lt;test_file_name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Run code coverage test and make sure your changes will not decrease the code coverage rate:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make cov
+</pre></div>
+</div>
+<p>Note that since code coverage test has to run unit test as well, you can actually skip the previous step if you plan to get a coverage report.</p>
+</li>
+<li><p>Rebase your branch on the head of master. Note that you may need to resolve conflicts during rebasing. Follow the prompt up git instructions to resolve them.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote add upstream git@github.com:comaniac/lorien.git
+git fetch upstream
+git rebase upstream/master your_branch
+git push origin -f
+</pre></div>
+</div>
+</li>
+<li><p>Check the code format:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make check_format
+</pre></div>
+</div>
+<p>If you got any errors when checking the format, use the following command to auto-format the code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make format
+</pre></div>
+</div>
+</li>
+<li><p>Check lint. We use <code class="docutils literal notranslate"><span class="pre">pylint</span></code> to check if the coding style aligns to PEP8 standards. Run the following command for linting.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make lint
+</pre></div>
+</div>
+<p>You have to get a perfect score in order to pass the CI. If you believe that the ERROR/WARNING you got from linting does not make sense, you are also welcome to open an issue for discussion. Do NOT simply add <code class="docutils literal notranslate"><span class="pre">pylint:</span> <span class="pre">disable</span></code> to workaround it without reasons.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Your</span> <span class="n">code</span> <span class="n">has</span> <span class="n">been</span> <span class="n">rated</span> <span class="n">at</span> <span class="mf">10.00</span><span class="o">/</span><span class="mi">10</span> <span class="p">(</span><span class="n">previous</span> <span class="n">run</span><span class="p">:</span> <span class="mf">10.00</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="o">+</span><span class="mf">0.00</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the following command to check type. We use <code class="docutils literal notranslate"><span class="pre">mypy</span></code> to check if the code has potential type errors.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make <span class="nb">type</span>
+</pre></div>
+</div>
+<p>You should see the following message (the number of source files may change over time).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Success</span><span class="p">:</span> <span class="n">no</span> <span class="n">issues</span> <span class="n">found</span> <span class="ow">in</span> <span class="mi">29</span> <span class="n">source</span> <span class="n">files</span>
+</pre></div>
+</div>
+</li>
+<li><p>Commit all changes you made during the above steps.</p></li>
+<li><p>Send the pull request and request code reviews from other contributors.</p>
+<ul class="simple">
+<li><p>To get your code reviewed quickly, we encourage you to help review others' code so they can do the favor in return.</p></li>
+<li><p>Code review is a shepherding process that helps to improve contributor's code quality.
+We should treat it proactively, to improve the code as much as possible before the review.
+We highly value patches that can get in without extensive reviews.</p></li>
+<li><p>The detailed guidelines and summarizes useful lessons.</p></li>
+</ul>
+</li>
+<li><p>The pull request can be merged after passing the CI and approved by at least one reviewer.</p></li>
+</ul>
+<div class="section" id="ci-environment">
+<h2>CI Environment<a class="headerlink" href="#ci-environment" title="Permalink to this headline">¶</a></h2>
+<p>We use Github Action with the prebuilt docker image to run CI. You can find the prebuilt docker images at <a class="reference external" href="https://hub.docker.com/r/comaniac0422/lorien">Docker Hub</a> .</p>
+<p>Since updating docker images may cause CI problems and need fixes to accommodate the new environment, here is the protocol to update the docker image for CI:</p>
+<ul class="simple">
+<li><p>Send PR to update build script in the repo and ask one of the code owners to perform the following steps.</p></li>
+<li><p>Build the new docker image: <code class="docutils literal notranslate"><span class="pre">./build</span> <span class="pre">cpu</span></code>.</p></li>
+<li><p>Tag and publish the image with a new version: <code class="docutils literal notranslate"><span class="pre">./publish.sh</span> <span class="pre">cpu</span> <span class="pre">comaniac0422/lorien:ubuntu-18.04-v&lt;new_version&gt;</span></code>.</p></li>
+<li><p>Update the version (most of the time increase the minor version) in <code class="docutils literal notranslate"><span class="pre">./github/workflows/ubuntu-ci.yaml</span></code>, send a PR.</p></li>
+<li><p>The PR should now use the updated environment to run CI. Fix any issues wrt to the new image versions.</p></li>
+<li><p>Merge the PR and now we are in new version.</p></li>
+</ul>
+</div>
+<div class="section" id="code-coverage-enforcement">
+<h2>Code Coverage Enforcement<a class="headerlink" href="#code-coverage-enforcement" title="Permalink to this headline">¶</a></h2>
+<p>The CI will upload the code coverage report to codecov.io to keep track of code coverage changes. You can find a badge in the README showing the current code coverage of master branch. We enforce the code coverage to be higher than 90%.</p>
+<p>After your PR has passed the CI, you should see a Codecov bot posts a comment in your PR for a code coverage change report. Your PR should guarantee that the code coverage does not drop before getting merged.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../api/index.html" class="btn btn-neutral float-right" title="Python APIs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Contribute to Lorien" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright .
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

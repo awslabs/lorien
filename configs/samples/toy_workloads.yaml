@@ -1,4 +1,0 @@
-workload:
-- '!!python/object:lorien.workload.Workload {args: [[TENSOR, [1, 64, 73, 73], float32], [TENSOR, [80, 64, 1, 1], float32], [1, 1], [0, 0, 0, 0], [1, 1], NCHW, NCHW, float32], lib: topi, target: llvm -keys=cpu, task_name: conv2d_NCHWc.x86}'
-- '!!python/object:lorien.workload.Workload {args: [[TENSOR, [1, 128, 56, 56], float32], [TENSOR, [128, 128, 1, 1], float32], [1, 1], [0, 0, 0, 0], [1, 1], NCHW, NCHW, float32], lib: topi, target: llvm -keys=cpu, task_name: conv2d_NCHWc.x86}'
-- '!!python/object:lorien.workload.Workload {args: [[TENSOR, [1, 256, 35, 35], float32], [TENSOR, [48, 256, 1, 1], float32], [1, 1], [0, 0, 0, 0], [1, 1], NCHW, NCHW, float32], lib: topi, target: llvm -keys=cpu, task_name: conv2d_NCHWc.x86}'

@@ -1,3 +1,0 @@
-server: 'localhost:18871'
-target: 'llvm -mcpu=skylake-avx512'
-

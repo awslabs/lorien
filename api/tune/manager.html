@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="python3" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Job Manager &mdash; lorien alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Result" href="result.html" />
+    <link rel="prev" title="Master" href="master.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> lorien
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../setup/index.html">Setup Lorien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contribute/index.html">Contribute to Lorien</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../main.html">Main</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configs.html">Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workload.html">Workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../util.html">Util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logger.html">Logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generate.html">Generate</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Tune</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="master.html">Master</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Job Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="result.html">Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="job.html">Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpc/index.html">RPC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../database/index.html">Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dialect/index.html">Dialect</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">lorien</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Python APIs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tune</a> &raquo;</li>
+        
+      <li>Job Manager</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/api/tune/manager.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-lorien.tune.job_manager">
+<span id="job-manager"></span><h1>Job Manager<a class="headerlink" href="#module-lorien.tune.job_manager" title="Permalink to this headline">¶</a></h1>
+<p>The worker module.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.AWSBatchJobManager">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lorien.tune.job_manager.</span></span><span class="sig-name descname"><span class="pre">AWSBatchJobManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="job.html#lorien.tune.job.Job" title="lorien.tune.job.Job"><span class="pre">lorien.tune.job.Job</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.AWSBatchJobManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>AWS batch job manager class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.AWSBatchJobManager.desc">
+<span class="sig-name descname"><span class="pre">desc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#lorien.tune.job_manager.AWSBatchJobManager.desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a description shown at the beginning of progress bar while tuning.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.AWSBatchJobManager.relaunch_hanging_jobs">
+<span class="sig-name descname"><span class="pre">relaunch_hanging_jobs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobs_desc</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.AWSBatchJobManager.relaunch_hanging_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Timed monitoring check for halted/failed jobs and relaunch them</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch_client</strong> (<em>botocore.client.Batch</em>) -- boto3 client for AWS batch. Note that we do not annotate boto3 types because
+it requires an additional package.</p></li>
+<li><p><strong>jobs_desc</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) -- Job descriptions that extracted from each job.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.AWSBatchJobManager.resume_job_states">
+<span class="sig-name descname"><span class="pre">resume_job_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.AWSBatchJobManager.resume_job_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the tuning jobs have correct metadata.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.AWSBatchJobManager.tune_impl">
+<span class="sig-name descname"><span class="pre">tune_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">progress</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.AWSBatchJobManager.tune_impl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tune workloads with AWS batch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>progress</strong> (<em>tqdm</em>) -- The formulated progress bar to be updated progressively.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.JobManagerBase">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lorien.tune.job_manager.</span></span><span class="sig-name descname"><span class="pre">JobManagerBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="job.html#lorien.tune.job.Job" title="lorien.tune.job.Job"><span class="pre">lorien.tune.job.Job</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.JobManagerBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class of job manager.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.JobManagerBase.desc">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">desc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#lorien.tune.job_manager.JobManagerBase.desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a description shown at the beginning of progress bar while tuning.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.JobManagerBase.num_jobs">
+<span class="sig-name descname"><span class="pre">num_jobs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#lorien.tune.job_manager.JobManagerBase.num_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the total number of jobs to be tuned by this manager.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.JobManagerBase.replay_trace">
+<span class="sig-name descname"><span class="pre">replay_trace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.JobManagerBase.replay_trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the current state from the trace file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.JobManagerBase.resume_job_states">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">resume_job_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.JobManagerBase.resume_job_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resume the jobs that were being tuned when the state was dumped.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.JobManagerBase.tune">
+<span class="sig-name descname"><span class="pre">tune</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="result.html#lorien.tune.result.TuneResult" title="lorien.tune.result.TuneResult"><span class="pre">lorien.tune.result.TuneResult</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lorien.tune.job_manager.JobManagerBase.tune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tune workloads on the servers via RPC.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>tune_results</strong> -- The result can be either the absolute performance,
+the speedup over the last performance, or the error message.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="result.html#lorien.tune.result.TuneResult" title="lorien.tune.result.TuneResult">TuneResult</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.JobManagerBase.tune_impl">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">tune_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">tqdm.std.tqdm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.JobManagerBase.tune_impl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Workload tuning implementation. The tuning results are directly stored in
+self.job_n_results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>progress</strong> (<em>tqdm</em>) -- The formulated progress bar to be updated progressively.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.LocalJobManager">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lorien.tune.job_manager.</span></span><span class="sig-name descname"><span class="pre">LocalJobManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="job.html#lorien.tune.job.Job" title="lorien.tune.job.Job"><span class="pre">lorien.tune.job.Job</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.LocalJobManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Local job manager class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.LocalJobManager.desc">
+<span class="sig-name descname"><span class="pre">desc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#lorien.tune.job_manager.LocalJobManager.desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a description shown at the beginning of progress bar while tuning.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.LocalJobManager.resume_job_states">
+<span class="sig-name descname"><span class="pre">resume_job_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.LocalJobManager.resume_job_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resume the jobs that were being tuned when the state was dumped.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.LocalJobManager.tune_impl">
+<span class="sig-name descname"><span class="pre">tune_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">progress</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.LocalJobManager.tune_impl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tune workloads with locally.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Local tuner will not update the progress bar in order to keep the console concise.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>progress</strong> (<em>tqdm</em>) -- The formulated progress bar to be updated progressively.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.RPCJobManager">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lorien.tune.job_manager.</span></span><span class="sig-name descname"><span class="pre">RPCJobManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="job.html#lorien.tune.job.Job" title="lorien.tune.job.Job"><span class="pre">lorien.tune.job.Job</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.RPCJobManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>RPC job manager class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.RPCJobManager.desc">
+<span class="sig-name descname"><span class="pre">desc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#lorien.tune.job_manager.RPCJobManager.desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a description shown at the beginning of progress bar while tuning.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.RPCJobManager.resume_job_states">
+<span class="sig-name descname"><span class="pre">resume_job_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.RPCJobManager.resume_job_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resume the jobs that were being tuned when the state was dumped.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.RPCJobManager.tune_impl">
+<span class="sig-name descname"><span class="pre">tune_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">progress</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lorien.tune.job_manager.RPCJobManager.tune_impl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tune workloads with RPC hosts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>progress</strong> (<em>tqdm</em>) -- The formulated progress bar to be updated progressively.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lorien.tune.job_manager.register_job_manager">
+<span class="sig-prename descclassname"><span class="pre">lorien.tune.job_manager.</span></span><span class="sig-name descname"><span class="pre">register_job_manager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_help</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#lorien.tune.job_manager.register_job_manager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register job manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) -- The job manager name.</p></li>
+<li><p><strong>format_help</strong> (<em>str</em>) -- The job manager specific config format description.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>reg</strong> -- A callable function for registration.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="result.html" class="btn btn-neutral float-right" title="Result" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="master.html" class="btn btn-neutral float-left" title="Master" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright .
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
