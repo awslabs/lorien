@@ -1,0 +1,45 @@
+name: Ubuntu
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+    container: comaniac0422/lorien:ubuntu-18.04-v0.06
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v1
+      - name: Check format with black
+        run: make check_format
+      - name: Lint with pylint
+        run: make lint
+      - name: Check type with mypy
+        run: make type
+      - name: Unit test and coverage report with pytest
+        run: python3 -m pytest tests --cov-config=tests/lint/coveragerc --cov=lorien --cov-report "xml:cov.xml"
+      - name: Upload coverage report to codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./cov.xml
+          fail_ci_if_error: false
+      - name: Build docs
+        run: |
+            sudo DEBIAN_FRONTEND=noninteractive apt-get update
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-sphinx rsync
+            make doc
+      - name: Deploy docs
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        if: github.event_name == 'push'
+        with:
+          ACCESS_TOKEN: ${{ secrets.DEPLOY_ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: docs/build/html
+

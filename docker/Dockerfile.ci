@@ -1,0 +1,19 @@
+ARG platform=x86
+FROM lorien:${platform}-tvm-latest
+
+COPY req_dev.txt /req_dev.txt
+RUN python3 -m pip install --ignore-installed -r /req_dev.txt
+
+RUN python3 -m pip install xgboost>=1.1.0
+RUN python3 -m pip install codecov
+RUN python3 -m pip install mxnet==1.5.1 gluoncv==0.6.0
+RUN python3 -m pip install tensorflow-cpu==2.2.0 keras onnx
+RUN python3 -m pip install torch==1.6.0+cpu torchvision==0.7.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+RUN python3 -m pip install flatbuffers
+RUN python3 -m pip install https://github.com/FrozenGene/tflite/releases/download/v1.13.1/tflite-1.13.1-py3-none-any.whl
+
+
+COPY ./entrypoint /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint
+ENTRYPOINT ["entrypoint"]
+

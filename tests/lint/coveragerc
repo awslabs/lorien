@@ -1,0 +1,13 @@
+[run]
+omit =
+    */logger.py
+    */__main__.py
+    */__init__.py
+    */launch.py
+    */main.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == .__main__.:

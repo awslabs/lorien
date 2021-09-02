@@ -1,0 +1,17 @@
+# Tuning options.
+local: llvm -mcpu=core-avx2
+db:
+    - endpoint_url: http://localhost:10020
+tuner: random
+ntrial: 15
+
+# We enable clflush for x86 targets so we can have fewer tests.
+test: 1
+repeat: 10
+min: 1
+
+# Result committing options.
+commit-nbest: 20
+commit-table-name: lorien
+# Uncomment this line if you have configured AWS CLI and S3 bucket.
+#commit-log-to: saved-tuning-logs

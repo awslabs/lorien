@@ -1,0 +1,10 @@
+setuptools
+future
+tqdm > 4.40
+argparse
+rpyc
+boto3
+filelock
+ruamel.yaml >= 0.16.12
+awscli >= 1.18.140
+

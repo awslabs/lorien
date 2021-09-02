@@ -1,0 +1,11 @@
+ARG platform=x86
+
+FROM lorien:x86-base-latest as x86-tvm-latest
+RUN echo "Installing TVM for x86 CPU"
+RUN python3 -m pip install tlcpack-nightly -f https://tlcpack.ai/wheels
+
+FROM lorien:gpu-bast-latest as gpu-tvm-latest
+RUN echo "Installing TVM for CUDA"
+RUN python3 -m pip install tlcpack-nightly-cu102 -f https://tlcpack.ai/wheels
+
+FROM ${platform}-tvm-latest as final

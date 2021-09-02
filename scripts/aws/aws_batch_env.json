@@ -1,0 +1,28 @@
+{
+  "computeEnvironmentName": "lorien-c5-env",
+  "type": "MANAGED",
+  "state": "ENABLED",
+  "computeResources": {
+    "type": "EC2",
+    "minvCpus": 0,
+    "maxvCpus": 32,
+    "desiredvCpus": 0,
+    "instanceTypes": [
+      "c5.2xlarge"
+    ],
+    "subnets": [
+	  "subnet-xxxxxxxx",
+	  "subnet-yyyyyyyy"
+    ],
+    "securityGroupIds": [
+      "sg-zzzzzzz"
+    ],
+    "ec2KeyPair": "",
+    "instanceRole": "ecsInstanceRole",
+    "launchTemplate": {
+        "launchTemplateName": "batch-template-for-lorien",
+        "version": "$Default"
+    }
+  },
+  "serviceRole": "arn:aws:iam::<AWS account>:role/service-role/AWSBatchServiceRole"
+}

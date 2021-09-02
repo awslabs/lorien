@@ -1,0 +1,13 @@
+# Workload mutation rules
+rules:
+    - task:
+        - conv2d_NCHWc.x86 
+        - depthwise_conv2d_NCHWc.x86
+        - conv2d_nchw.cuda
+        - depthwise_conv2d_nchw.cuda
+        - conv2d_nchw_winograd.cuda
+        - dense_nopack.x86
+        - dense_pack.x86
+      desc:
+          "[0, 1, 0]": "[1, 3, 4, 7, 8, 12, 16]" # Batch size
+          "[0, 1, 1]": "[v, v * 2, v * 4]" # Channel size
