@@ -1,46 +1,46 @@
 Lorien: A Unified Infrastructure for Efficient Deep Learning Workloads Delivery
 ===============================================================================
 [![Build Status](https://github.com/awslabs/lorien/actions/workflows/ubuntu-ci.yml/badge.svg?branch=main)](https://github.com/awslabs/lorien/actions/workflows/ubuntu-ci.yml)
-[![codecov](https://codecov.io/gh/awslabs/lorien/branch/main/graph/badge.svg?token=78Q29GBRHW)](https://codecov.io/gh/awslabs/lorien)
+[![codecov.io](https://codecov.io/gh/awslabs/lorien/branch/main/graph/badge.svg?token=78Q29GBRHW)](https://codecov.io/gh/awslabs/lorien)
 
 Lorien is an infrastructure to massively explore/benchmark the best schedules of given deep learning models.
-Since Lorien is deep learning compiler (DLC) agnostic, one can easily implement a Lorien dialect
-to support a new DLC.
+Lorien is deep learning compiler (DLC) agnostic, so one can easily implement a Lorien dialect to support
+a new DLC.
 
 ## Motivation
 
-Although most deep learning compilers (e.g., TVM, Halide) have their own auto-tuning frameworks
-to optimize the performance on a certain hardware platform, there are some common challenges for
-them to be practically used in production.
+Although auto-tuning frameworks for deep learning compilers (e.g., TVM, Halide) are capable of
+delivering high-performance operators that match or even beat vendor kernel libraries, auto-tuning
+a deep learning model could take days or even weeks, especially for the model with many workloads
+like ResNet-152 or Inception V3.
 
-1. Tuning Process Scalability and Stability.
-Long tuning time affects not only the time-to-market but the stability.
-To the best of our knowledge, none of existing auto-tuning frameworks is designed for tuning
-on multiple machines, and none of them consider fault tolerance.
-The tuning process, hence, has to start over if it was accidentally interrupted.
-This is crucial especially on edge devices, which are less reliable than cloud instances
+With such a long tuning time, one key question To maintain the best user experience during deep model
+developments and deployments is *How to promptly deliver schedules with reasonably good performance upon user requests?*
+Accordingly, we design and implement Lorien to remove the following obstacles:
+
+1. *Tuning Process Scalability and Stability.* Long tuning time affects not only the time-to-market but the stability.
+To the best of our knowledge, none of existing auto-tuning frameworks is designed for tuning on multiple machines,
+and none of them consider fault tolerance. The tuning process, hence, has to be manually started over if it was
+accidentally interrupted. This is crucial especially on edge devices, which are less reliable than cloud instances
 and may fail frequently due to overheat or other factors.
 
-2. Tuning Result Management.
-Although almost all auto-tuning frameworks, such as Halide auto-scheduler and AutoTVM,
-provide mechanisms to serialize tuning results, all of them use file-based mechanism
-and have different formats. As a result, a unified data model is required to manage
-tuning results from various of auto-tuning frameworks.
+2. *Tuning Result Management.* Although almost all auto-tuning frameworks provide mechanisms to serialize tuning
+results for future applications, all of them use file-based mechanism and have different formats. As a result,
+engineers have additional work to orchestrate the data for efficient usage.
 
-3. Time to Deliver an Efficient Schedule.
-Even a database is constructed to serve most user requests, it is still possible that
-certain workloads are missing. For example, neural architecture search (NAS) may generate
-unseen workloads. This necessitates tuning of the workloads on-the-fly using the auto-tuning
-framework. However, modern auto-tuning frameworks usually leverage iterative search algorithms
-with on-device measurements, which usually take hours, to find an efficient schedule
-for one workload. The unfavorably expensive querying/tuning overhead makes production
-deployment impractical.
+3. *Time to Deliver an Efficient Schedule.* Even a database is constructed to serve most user requests,
+it is still possible that certain workloads are missing. However, modern auto-tuning frameworks usually
+leverage iterative search algorithms with on-device measurements, which usually take hours,
+to find an efficient schedule for an unseen workload. The unfavorably expensive querying/tuning overhead
+makes production deployment impractical.
 
-Accordingly, we design and implement Lorien, an open source system, to address these challenges.
-To deal with a large amount of tuning tasks, Lorien provides two distributed mechanisms,
-one for cloud platforms and the other for edge devices, with the consideration of scalability,
-flexibility, and reliability. The best schedules realized by auto-tuning frameworks are committed
-to a NoSQL database with the proposed data model that organizes data for efficient querying.
+Lorien is a unified and extensible infrastructure for delivering efficient deep learning workloads upon requests.
+Lorien allows auto-tuning deep learning frameworks to be easily plugged in as dialects, and supports large scale
+tuning on both cloud and edge platforms. The tuning results are managed in a NoSQL database with a unified data model
+that fits all auto-tuning frameworks.
+While the best schedules managed in the database can be used to compile deep learning models to achieve high performance,
+the tuning logs managed in a file system can also 1) enable more comprehensive performance analysis on different platforms,
+and 2) help train a performance cost model with an AutoML solution.
 
 Please visit the [official documentations](https://awslabs.github.io/lorien) for setup guideline and tutorials.
 
@@ -66,3 +66,19 @@ You can directly make use of pre-built Lorien docker images on [Docker Hub](http
 ## Documentation
 
 [https://awslabs.github.io/lorien/](https://awslabs.github.io/lorien/)
+
+### Citing Lorien
+
+If you use Lorien in a scientific publication, please cite the following paper:
+
+Cody Hao Yu, Xingjian Shi, Haichen Shen, Zhi Chen, Mu Li, Yida Wang, "Lorien: Efficient Deep Learning Workloads Delivery", Proceedings of the 12th ACM Symposium on Cloud Computing. 2021.
+
+```
+@inproceedings{yu2021lorien,
+  title={Lorien: Efficient Deep Learning Workloads Delivery},
+  author={Yu, Cody Hao and Shi, Xingjian and Shen, Haichen and Chen, Zhi and Li, Mu and Wang, Yida},
+  booktitle={Proceedings of the Seventh ACM Symposium on Cloud Computing},
+  year={2021}
+}
+```
+
