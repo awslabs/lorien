@@ -1,7 +1,7 @@
 Lorien: A Unified Infrastructure for Efficient Deep Learning Workloads Delivery
 ===============================================================================
-[![Build Status](https://github.com/comaniac/lorien/workflows/Ubuntu/badge.svg)](https://github.com/comaniac/lorien/actions?query=workflow%3AUbuntu)
-[![codecov](https://codecov.io/gh/comaniac/lorien/branch/master/graph/badge.svg?token=0lkUl2RgTa)](https://codecov.io/gh/comaniac/lorien)
+[![Build Status](https://github.com/awslabs/lorien/actions/workflows/ubuntu-ci.yml/badge.svg?branch=main)](https://github.com/awslabs/lorien/actions/workflows/ubuntu-ci.yml)
+[![codecov](https://codecov.io/gh/awslabs/lorien/branch/main/graph/badge.svg?token=78Q29GBRHW)](https://codecov.io/gh/awslabs/lorien)
 
 Lorien is an infrastructure to massively explore/benchmark the best schedules of given deep learning models.
 Since Lorien is deep learning compiler (DLC) agnostic, one can easily implement a Lorien dialect
@@ -42,7 +42,7 @@ one for cloud platforms and the other for edge devices, with the consideration o
 flexibility, and reliability. The best schedules realized by auto-tuning frameworks are committed
 to a NoSQL database with the proposed data model that organizes data for efficient querying.
 
-Please visit the [official documentations](https://comaniac.github.io/lorien) for setup guideline and tutorials.
+Please visit the [official documentations](https://awslabs.github.io/lorien) for setup guideline and tutorials.
 
 ## System Requirements
 
@@ -65,4 +65,4 @@ You can directly make use of pre-built Lorien docker images on [Docker Hub](http
 
 ## Documentation
 
-[https://comaniac.github.io/lorien/](https://comaniac.github.io/lorien/)
+[https://awslabs.github.io/lorien/](https://awslabs.github.io/lorien/)
