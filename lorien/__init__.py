@@ -17,4 +17,4 @@
 from . import dialect, generate, tune
 
 # Current version.
-__version__ = "0.0.dev1"
+__version__ = "0.1.dev0"
